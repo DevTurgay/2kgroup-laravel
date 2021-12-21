@@ -79,7 +79,7 @@ Just a simple MVC (Laravel) project to retrieve data from db and parse to view
 1. [Get composer](https://getcomposer.org/download/)
 2. Clone the repo
    ```sh
-   git clone https://github.com/DevTurgay/2kgroup-mvc-laravel.git
+   git clone https://github.com/DevTurgay/2kgroup-laravel.git
    ```
 3. Install NPM packages
    ```sh
