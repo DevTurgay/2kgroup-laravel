@@ -16,4 +16,10 @@ use App\Http\Controllers\BetController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::resource('bet', BetController::class);
+Route::prefix('bet')->group(function()
+{
+    Route::get('/add', [BetController::class, 'create']);
+    Route::post('/add', [BetController::class, 'store'])->name('bet_add_post');
+    Route::resource('/', BetController::class);
+});
+
