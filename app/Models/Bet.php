@@ -10,4 +10,5 @@ class Bet extends Model
     use HasFactory;
     protected $table = 'view_3d';
     public $timestamps = false;
+    protected $fillable = ['bet','win','net','rake','date','playerid','agentid'];
 }

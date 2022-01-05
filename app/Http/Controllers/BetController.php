@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBetRequest;
+use App\Models\Agent;
 use Illuminate\Http\Request;
 use App\Models\Bet;
+use App\Models\Player;
+use Form;
 
 class BetController extends Controller
 {
@@ -24,7 +28,12 @@ class BetController extends Controller
      */
     public function create()
     {
-        //
+        $data = ['players'=>[],'agents'=>[]];
+
+        $data['players']    = Player::getAllPlayerNames();
+        $data['agents']     = Agent::getAllAgentNames();
+        
+        return view('bet/create',$data);
     }
 
     /**
@@ -33,9 +42,12 @@ class BetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBetRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $validated['date'] = date('Y-m-d');
+        Bet::create($validated);
+        return redirect()->to('/');
     }
 
     /**
@@ -46,10 +58,11 @@ class BetController extends Controller
      */
     public function show($id)
     {
+        die('sd');
         $bet = Bet::findOrFail($id);
         return view('bet/single',['bet'=>$bet]);
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
